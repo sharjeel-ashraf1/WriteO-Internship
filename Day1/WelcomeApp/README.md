@@ -1,50 +1,37 @@
-# Welcome to your Expo app 👋
+# WriteO Internship — React Native + Expo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repository contains my daily task submissions for the WriteO React Native internship.
 
-## Get started
+## 📅 Day 1 — WriteO Overview & React Native Setup
 
-1. Install dependencies
+### What I Did
+- Explored the WriteO platform (staging/demo) to understand its purpose, features, and target users
+- Set up a React Native development environment using Expo
+- Built a simple Expo app with a name input, submit button, and dynamic greeting text
 
-   ```bash
-   npm install
-   ```
+### Task 1 — WriteO Overview
+- A document containing overview of WriteO is added.
 
-2. Start the app
+### Task 2 — First Expo App
+Built a simple Expo app (`/Day1/WelcomeApp`) with:
+- A welcome screen
+- A name input field (`TextInput`)
+- A submit button (`Pressable`)
+- Text that displays "Welcome, [name]" after pressing submit
 
-   ```bash
-   npx expo start
-   ```
+**Tech used:** React Native, Expo SDK 54, TypeScript
 
-In the output, you'll find options to open the app in a
+### Blockers Faced & How I Solved Them
+- **SDK version mismatch:** Project was initially created on Expo SDK 56, but Expo Go on my iPhone only supported SDK 54 (App Store hadn't approved the newer Expo Go version yet). Fixed by recreating the project with `npx create-expo-app@latest --template default@sdk-54`.
+- **iOS Local Network permission:** Expo Go's "Local Network" permission was toggled off in iPhone settings, which silently blocked the connection even though WiFi looked fine on both devices. Enabling it fixed the connection.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### How to Run
 ```bash
-npm run reset-project
+cd Day1/WelcomeApp
+npm install
+npx expo start
 ```
+Scan the QR code with the Expo Go app (iOS/Android).
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
