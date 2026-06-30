@@ -1,50 +1,112 @@
-# Welcome to your Expo app 👋
+# Profile Screen — Reusable Components (Day 2)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple React Native (Expo) screen built to practice reusable components, props, basic styling, and mobile layout fundamentals.
 
-## Get started
+## Learning Goals
 
-1. Install dependencies
+- Reusable components
+- Props in React Native components
+- Basic folder structure
+- Styling with `StyleSheet`
+- Mobile spacing and layout
+- Touch targets and readable font sizes
 
-   ```bash
-   npm install
-   ```
+## What This Project Does
 
-2. Start the app
+A profile screen where a user can type their name, email, and a short bio into input fields. The entered details are displayed live inside a profile card, with an Edit button below it.
 
-   ```bash
-   npx expo start
-   ```
+## Components
 
-In the output, you'll find options to open the app in a
+All reusable components live in `components/`.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### `Header`
+Displays a screen title.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```tsx
+<Header title="My Profile" />
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+| Prop  | Type   | Description           |
+|-------|--------|------------------------|
+| title | string | Text displayed as the header |
 
-## Learn more
+### `InputField`
+A styled, controlled text input.
 
-To learn more about developing your project with Expo, look at the following resources:
+```tsx
+<InputField value={name} onChangeText={setName} placeholder="Enter your name" />
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+| Prop         | Type                     | Description                          |
+|--------------|--------------------------|---------------------------------------|
+| value        | string                   | Current text value                    |
+| onChangeText | (text: string) => void   | Called with updated text on every keystroke |
+| placeholder  | string                   | Hint text shown when empty            |
 
-## Join the community
+### `Card`
+A generic styled container used to group and display content.
 
-Join our community of developers creating universal apps.
+```tsx
+<Card>
+  <Text>Name: {name}</Text>
+</Card>
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+| Prop     | Type            | Description                  |
+|----------|-----------------|-------------------------------|
+| children | React.ReactNode | Content rendered inside the card |
+
+### `PrimaryButton`
+A styled, tappable button.
+
+```tsx
+<PrimaryButton title="Edit" onPress={() => console.log("Edit")} />
+```
+
+| Prop    | Type         | Description                  |
+|---------|--------------|--------------------------------|
+| title   | string       | Text displayed on the button   |
+| onPress | () => void   | Called when the button is tapped |
+
+## Screen
+
+`index.tsx` assembles the components into the profile screen:
+
+- `Header` — screen title
+- Three `InputField`s — name, email, short bio (each backed by its own `useState`)
+- `Card` — displays the live values of name, email, and bio
+- `PrimaryButton` — labeled "Edit"
+
+Each input is a **controlled component**: its `value` comes from state in `index.tsx`, and typing calls `onChangeText`, which updates that state and re-renders the screen with the new value.
+
+## Folder Structure
+
+```
+components/
+  Card.tsx
+  Header.tsx
+  InputField.tsx
+  PrimaryButton.tsx
+app/
+  index.tsx
+```
+
+## Styling Notes
+
+- Each component defines its own default styles using `StyleSheet.create`.
+- The screen container (`index.tsx`) handles overall page spacing.
+- `InputField` and `PrimaryButton` use `minHeight: 44` to meet minimum mobile touch-target size.
+- Font sizes range from 16–24, kept within readable ranges for mobile screens.
+
+## Running the Project
+
+```bash
+npm install
+npx expo start
+```
+
+Then open the app in Expo Go, an emulator, or a simulator.
+
+## Notes / Next Steps
+
+The Edit button currently logs to the console (`console.log("Edit")`) and has no visible effect on screen — wiring it up to toggle an actual edit mode is a planned next step, not part of this stage's scope.
