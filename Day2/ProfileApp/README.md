@@ -107,6 +107,4 @@ npx expo start
 
 Then open the app in Expo Go, an emulator, or a simulator.
 
-## Notes / Next Steps
 
-The Edit button currently logs to the console (`console.log("Edit")`) and has no visible effect on screen — wiring it up to toggle an actual edit mode is a planned next step, not part of this stage's scope.
